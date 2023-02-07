@@ -6,24 +6,23 @@ on:
         description: 'NPM Version'     
         required: true
 jobs:
-  if: ${{ github.ref_name }} == develop && ${{ !startsWith(github.event.inputs.version, '8') }}
   publish-npm-module:
     runs-on: ubuntu-latest
     steps:
       - name: Verify develop version
-      if: ${{ github.ref_name }} == develop && ${{ !startsWith(github.event.inputs.version, '8') }}
-      run: |
-        echo "Error: NPM Version for the develop branch must be 8.x.x"
-        echo "ref_name = ${{ github.ref_name }}"
-        echo "starts with 8 = ${{ !startsWith(github.event.inputs.version, '8') }}"
-        echo "expression = ${{ github.ref_name }} == develop && ${{ !startsWith(github.event.inputs.version, '8') }}"
-        exit 1
+        if: ${{ github.ref_name }} == develop && ${{ !startsWith(github.event.inputs.version, '8') }}
+        run: |
+          echo "Error: NPM Version for the develop branch must be 8.x.x"
+          echo "ref_name = ${{ github.ref_name }}"
+          echo "starts with 8 = ${{ !startsWith(github.event.inputs.version, '8') }}"
+          echo "expression = ${{ github.ref_name }} == develop && ${{ !startsWith(github.event.inputs.version, '8') }}"
+          exit 1
 
       - name: Verify uex version
-      if: ${{ github.ref_name }} == uex-main && ${{ !startsWith(github.event.inputs.version, '9') }}
-      run: |
-        echo "Error: NPM Version for the uex-main branch must be 9.x.x"
-        exit 1
+        if: ${{ github.ref_name }} == uex-main && ${{ !startsWith(github.event.inputs.version, '9') }}
+        run: |
+          echo "Error: NPM Version for the uex-main branch must be 9.x.x"
+          exit 1
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
