@@ -12,13 +12,15 @@ jobs:
       - name: Verify valid version for develop
         if: ${{ github.ref_name }} == develop && ${{ !startsWith(github.event.inputs.version, '8') }}
         run: |
-            echo "Error: NPM Version for the develop branch must be 8.x.x"
-            exit 1
+          echo "Error: NPM Version for the develop branch must be 8.x.x"
+          echo "ref_name = ${{ github.ref_name }}"
+          echo "starts with 8 = ${{ !startsWith(github.event.inputs.version, '8') }}"
+          exit 1
       - name: Verify valid version for uex
         if: ${{ github.ref_name }} == uex-main && ${{ !startsWith(github.event.inputs.version, '9') }}
         run: |
-            echo "Error: NPM Version for the uex-main branch must be 9.x.x"
-            exit 1
+          echo "Error: NPM Version for the uex-main branch must be 9.x.x"
+          exit 1
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
