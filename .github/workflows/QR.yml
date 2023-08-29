@@ -1,0 +1,17 @@
+name: QR
+on:
+  push:
+    branches:
+      - feature/QR202311
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      # If the tests fail, the build will fail
+      - run: npm run test
+      - run: npm run build
