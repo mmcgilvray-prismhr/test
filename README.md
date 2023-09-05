@@ -9,4 +9,4 @@ This is a test project to test GitHub workflows and actions.
 
 
 
-[![cov](https://mmcgilvray.github.io/test/badges/coverage.svg)](https://github.com/mmcgilvray/test/actions)
+[![cov](https://mmcgilvray-prismhr.github.io/test/badges/coverage.svg)](https://github.com/mmcgilvray-prismhr/test/actions)
