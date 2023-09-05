@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Running tests...\"",
+    "test": "mocha --recursive ./test --exit",
+    "coverage": "nyc -r text --reporter=json-summary mocha --recursive ./test --exit",
     "build": "echo \"Building application...\""
   },
   "repository": {
@@ -16,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/mmcgilvray-prismhr/test/issues"
   },
-  "homepage": "https://github.com/mmcgilvray-prismhr/test#readme"
+  "homepage": "https://github.com/mmcgilvray-prismhr/test#readme",
+  "dependencies": {
+    "chai": "4.3.8",
+    "mocha": "10.2.0",
+    "nyc": "15.1.0"
+  }
 }
