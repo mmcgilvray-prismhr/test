@@ -3,13 +3,15 @@ on:
   pull_request:
     branches:
       - develop
+      - feature/QR202311
 
 jobs:
-  run-test-suite:
+  run-code-coverage:
+    name: Code Coverage Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm run test
+      - run: npm run coverage

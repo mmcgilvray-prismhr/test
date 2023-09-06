@@ -2,7 +2,8 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "mocha --recursive ./test --exit",
     "coverage": "nyc -r text --reporter=json-summary mocha --recursive ./test --exit",
