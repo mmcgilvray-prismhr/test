@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha --recursive ./test --exit",
-    "coverage": "nyc -r text --reporter=json-summary mocha --recursive ./test --exit",
+    "test:report": "nyc -r text -r cobertura mocha --recursive ./test --exit",
     "build": "echo \"Building application...\""
   },
   "repository": {
