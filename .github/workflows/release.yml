@@ -1,0 +1,54 @@
+name: release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version Tag'
+        required: true
+jobs:
+  # publish-docker-image:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: '18.x'
+  #     - uses: docker/login-action@v2
+  #       with:
+  #         registry: ${{ vars.DOCKER_SERVER }}
+  #         username: ${{ secrets.DTR_USERNAME }}
+  #         password: ${{ secrets.DTR_PASSWORD }}
+  #     - run: sudo curl -k https://docker-dtr.prismhr.com/ca -o /usr/local/share/ca-certificates/prismhr-dockerdtr.crt
+  #     - run: sudo update-ca-certificates
+  #     - run: cp .npmrc.example .npmrc
+  #     - run: sed -i 's/@ACCESS_TOKEN@/${{ secrets.PRISMBUILDER_ACCESS_TOKEN }}/g' .npmrc
+  #     - run: sed -i 's/@version@/${{ github.event.inputs.version }}/g' config/globals.js
+  #     - run: docker build -t web/ess-api .
+  #     - run: docker tag web/ess-api:latest docker-dtr.prismhr.com/prismhr/ess-api:latest.rc
+  #     - run: docker tag web/ess-api:latest docker-dtr.prismhr.com/prismhr/ess-api:${{ github.event.inputs.version }}
+  #     - run: docker push docker-dtr.prismhr.com/prismhr/ess-api:${{ github.event.inputs.version }}
+  #     - run: docker push docker-dtr.prismhr.com/prismhr/ess-api:latest.rc
+  email-code-coverage:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send mail
+      if: failure()
+      uses: dawidd6/action-send-mail@v2
+      with:
+        # mail server settings
+        server_address: smtp.gmail.com
+        server_port: 465
+        # user credentials
+        username: "mmcgilvray@prismhr.com"
+        password: ""
+        # email subject
+        subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+        # email body as text
+        body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+        # comma-separated string, send email to
+        to: mmcgilvray@prismhr.com
+        # from email name
+        from: noreply@prismhr.com
+
+
+
